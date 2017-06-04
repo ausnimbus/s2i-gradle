@@ -40,7 +40,7 @@ node {
                                                                         "name" : "${tag}",
                                                                         "from" : [
                                                                                 "kind" : "DockerImage",
-                                                                                "name" : "gradle:%VERSION%-jdk-8-alpine",
+                                                                                "name" : "gradle:${versions[i]}-jdk-8-alpine",
                                                                         ],
                                                                         "referencePolicy" : [
                                                                                 "type" : "Source"
