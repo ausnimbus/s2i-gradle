@@ -7,7 +7,7 @@ node {
         def variants = "alpine".split(',');
         for (int v = 0; v < variants.length; v++) {
 
-                def versions = "3".split(',');
+                def versions = "3.5".split(',');
                 for (int i = 0; i < versions.length; i++) {
 
                   if (variants[v] == "default") {
@@ -40,7 +40,7 @@ node {
                                                                         "name" : "${tag}",
                                                                         "from" : [
                                                                                 "kind" : "DockerImage",
-                                                                                "name" : "gradle:${versions[i]}-jdk-8-alpine",
+                                                                                "name" : "gradle:${versions[i]}-jdk8-alpine",
                                                                         ],
                                                                         "referencePolicy" : [
                                                                                 "type" : "Source"

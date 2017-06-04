@@ -3,15 +3,15 @@
 #
 # DO NOT EDIT IT DIRECTLY.
 #
-FROM gradle:3-jdk-8-alpine
+FROM gradle:3.5-jdk8-alpine
 # <pre>
 
 MAINTAINER AusNimbus <support@ausnimbus.com.au>
 
-LABEL summary="Platform for running Gradle 3 applications" \
+LABEL summary="Platform for running Gradle 3.5 applications" \
       maintainer="AusNimbus <support@ausnimbus.com.au>" \
-      io.k8s.description="Platform for running Gradle 3 applications" \
-      io.k8s.display-name="Gradle 3"
+      io.k8s.description="Platform for running Gradle 3.5 applications" \
+      io.k8s.display-name="Gradle 3.5"
 
 ENV USER=100 \
     HOME=/opt/app-root/src
