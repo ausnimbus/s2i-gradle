@@ -11,7 +11,8 @@ IMAGE_NAME=${IMAGE_NAME-ausnimbus/s2i-gradle:3.5}
 VERSION=${VERSION-"3.5"}
 S2I_ARGS=${S2I_ARGS:-""}
 
-TEST_APPS=()
+TEST_APPS=(test-app-gradle)
+
 VERSION_COMMAND="env"
 
 extra_tests() {
