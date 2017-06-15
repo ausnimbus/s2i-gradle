@@ -2,4 +2,5 @@
 source /opt/app-root/etc/dotnet_environment
 
 echo "---> Running application ..."
-exec "$DOTNET_RUN_SCRIPT"
+
+exec java -Djava.security.egd=file:/dev/./urandom -jar app.jar $APP_OPTIONS
