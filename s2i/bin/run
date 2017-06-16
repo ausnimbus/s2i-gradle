@@ -1,6 +1,19 @@
 #!/bin/bash -e
-source /opt/app-root/etc/dotnet_environment
 
-echo "---> Running application ..."
+echo "---> Starting the application ..."
 
-exec java -Djava.security.egd=file:/dev/./urandom -jar app.jar $APP_OPTIONS
+if [ -f "./gradlew" ]; then
+    GRADLE_CMD="./gradlew"
+else
+    GRADLE_CMD="gradle"
+fi
+
+# run
+$GRADLE_CMD -q run
+
+ERR=$?
+if [ $ERR -ne 0 ]; then
+    echo "Aborting due to error code $ERR"
+    exit $ERR
+fi
+
