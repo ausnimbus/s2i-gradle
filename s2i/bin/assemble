@@ -1,29 +1,20 @@
 #!/bin/bash -e
-#source /opt/app-root/etc/gradle_environment
+source /opt/app-root/etc/gradle_environment
 
 echo "---> Building the application ..."
 
-cp -ad /tmp/src/* ./
+mv /tmp/src/* ./
 
-if [ -f "./gradlew" ]; then
-    GRADLE_CMD="./gradlew"
-else
-    GRADLE_CMD="gradle"
-fi
+GRADLE_CMD="gradle"
 
-if [ -z "$BUILDER_ARGS" ]; then
-    export BUILDER_ARGS="build -x test"
+if [ -z "$BUILD_ARGS" ]; then
+    export BUILD_ARGS="build -x test"
 fi
 
 echo "Gradle version:"
 $GRADLE_CMD --version
 
 # Execute the actual build
-$GRADLE_CMD -s $BUILDER_ARGS
+$GRADLE_CMD -s $BUILD_ARGS
 
-ERR=$?
-if [ $ERR -ne 0 ]; then
-    echo "Aborting due to error code $ERR from Gradle build"
-    exit $ERR
-fi
-
+fix-permissions ./

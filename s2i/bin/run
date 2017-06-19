@@ -1,19 +1,13 @@
 #!/bin/bash -e
+source /opt/app-root/etc/gradle_environment
 
 echo "---> Starting the application ..."
 
-if [ -f "./gradlew" ]; then
-    GRADLE_CMD="./gradlew"
-else
-    GRADLE_CMD="gradle"
+if [ -z $RUN_CMD ]
+then
+    RUN_CMD="gradle -q run"
 fi
 
 # run
-$GRADLE_CMD -q run
-
-ERR=$?
-if [ $ERR -ne 0 ]; then
-    echo "Aborting due to error code $ERR"
-    exit $ERR
-fi
+$RUN_CMD
 
