@@ -1,5 +1,20 @@
 #!/bin/bash -e
 source /opt/app-root/etc/gradle_environment
 
-echo "---> Installing application source ..."
+echo "---> Building the application ..."
+
 mv /tmp/src/* ./
+
+GRADLE_CMD="gradle"
+
+if [ -z "$BUILD_ARGS" ]; then
+    export BUILD_ARGS="build -x test"
+fi
+
+echo "Gradle version:"
+$GRADLE_CMD --version
+
+# Execute the actual build
+$GRADLE_CMD -s $BUILD_ARGS
+
+fix-permissions ./
