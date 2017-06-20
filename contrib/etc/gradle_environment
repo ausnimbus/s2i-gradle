@@ -1,0 +1,44 @@
+#!/bin/bash
+source cgroup-limits
+
+set -e
+set -o pipefail
+# Include hidden files
+shopt -s dotglob
+
+# Set the umask to be '002' so that any files/directories created from
+# this point are group writable.
+umask 002
+
+has_stage_task() {
+   test -f ./build.gradle &&
+     test -n "$(grep "^ *task *stage" ./build.gradle)"
+}
+
+is_spring_boot() {
+   test -f ./build.gradle &&
+     test -n "$(grep "^[^/].*org.springframework.boot:spring-boot" ./build.gradle)" &&
+     test -z "$(grep "org.grails:grails-" ./build.gradle)"
+}
+
+is_ratpack() {
+  test -f ./build.gradle &&
+    test -n "$(grep "^[^/].*io.ratpack.ratpack" ./build.gradle)"
+}
+
+is_grails() {
+   test -f ./build.gradle &&
+     test -n "$(grep "^[^/].*org.grails:grails-" ./build.gradle)"
+}
+
+is_webapp_runner() {
+  test -f ./build.gradle &&
+    test -n "$(grep "^[^/].*io.ratpack.ratpack" ./build.gradle)"
+}
+
+# Define the maximum memory limit (total_limit - 32MB)
+export GRADLE_OPTS=${GRADLE_OPTS:-"-Dorg.gradle.daemon=false -Dgradle.user.home=/opt/app-root/src -Xmx$((MEMORY_LIMIT-32))m"}
+
+# Define some server port ENV variables
+export SERVER_PORT=8080
+export RATPACK_PORT=8080

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 #
 # The 'run' performs a simple test that verifies that STI image.
 # The main focus here is to excersise the STI scripts.
@@ -7,12 +7,16 @@
 # The image has to be available before this script is executed.
 #
 
-IMAGE_NAME=${IMAGE_NAME-ausnimbus/s2i-gradle:3.5}
-VERSION=${VERSION-"3.5"}
+IMAGE_NAME=${IMAGE_NAME-ausnimbus/s2i-gradle:jdk8}
+VERSION=${VERSION-"jdk8"}
 S2I_ARGS=${S2I_ARGS:-""}
 
-TEST_APPS=()
+TEST_APPS=({gradlew-ratpack,gradlew-ratpack})
+
 VERSION_COMMAND="env"
+
+# TODO: ab keepalive doesn't seem to like ratpack
+export AB_PARAMS="-n 100 -c 32 -l"
 
 extra_tests() {
   echo ""

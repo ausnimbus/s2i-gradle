@@ -1,1 +1,2 @@
 #!/bin/bash -e
+tar cf - $(ls -d .gradle 2>/dev/null)

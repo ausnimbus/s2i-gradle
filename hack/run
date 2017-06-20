@@ -2,10 +2,10 @@
 
 NAME="gradle"
 DISPLAY_NAME="Gradle"
-FROM="gradle:%VERSION%-jdk8"
+FROM="gradle:%VERSION%"
 TYPE="s2i"
 VARIANTS="default"
-VERSIONS="3.5"
+VERSIONS="jdk8"
 
 DOCKER_PUSH=${DOCKER_PUSH:-"false"}
 

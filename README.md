@@ -4,12 +4,19 @@
 
 The [AusNimbus](https://www.ausnimbus.com.au/) builder for Gradle provides a fast, secure and reliable [Grails](https://www.ausnimbus.com.au/languages/grails-hosting/) and [Gradle hosting](https://www.ausnimbus.com.au/languages/java-hosting/) environment.
 
-The default version of Gradle will be used unless a [Gradle wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html) is found. Web processes must bind to port `8080`, and only the HTTP protocol is permitted for incoming connections.
+The default version of Gradle will be used unless a [Gradle wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html) is found. It is recommended to include the `gradlew` in your repository.
 
-# Environment Variables
+Web processes must bind to port `8080`, and only the HTTP protocol is permitted for incoming connections.
 
-- WIP
+## Environment Variables
+
+* **GRADLE_BUILD_TASK**
+  * The parameter passed to the gradle build process. By default it is automatically detected:
+  * Spring Boot: `build -x test`
+  * Ratpack: `installDist -x test`
+  * Default: `stage`
 
 # Versions
 
-- 3
+- jdk8
+- jdk9 (experimental)
