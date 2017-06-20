@@ -1,20 +1,41 @@
 #!/bin/bash -e
 source /opt/app-root/etc/gradle_environment
 
-echo "---> Building the application ..."
-
-mv /tmp/src/* ./
-
-GRADLE_CMD="gradle"
-
-if [ -z "$BUILD_ARGS" ]; then
-    export BUILD_ARGS="build -x test"
+if [ -d /tmp/artifacts/ ]; then
+    echo "---> Restoring build artifacts..."
+    mv -v /tmp/artifacts/* ./
 fi
 
-echo "Gradle version:"
-$GRADLE_CMD --version
+echo "---> Installing application source ..."
+mv /tmp/src/* ./
 
-# Execute the actual build
-$GRADLE_CMD -s $BUILD_ARGS
+if has_stage_task; then
+  DEFAULT_GRADLE_TASK="stage"
+elif is_spring_boot; then
+  if is_webapp_runner; then
+    echo "---> Spring Boot and Webapp Runner detected"
+  else
+    echo "---> Spring Boot detected"
+  fi
+  DEFAULT_GRADLE_TASK="build -x test"
+elif is_ratpack; then
+  echo "---> Ratpack detected"
+  DEFAULT_GRADLE_TASK="installDist -x test"
+else
+  DEFAULT_GRADLE_TASK="stage"
+fi
 
-fix-permissions ./
+export GRADLE_TASK="${GRADLE_TASK:-$DEFAULT_GRADLE_TASK}"
+
+echo "---> Building the application ..."
+# Use the gradle wrapper if it exists
+if [ -f "gradlew" ]; then
+    ./gradlew --version
+    ./gradle $GRADLE_TASK
+else
+    gradle --version
+    gradle $GRADLE_TASK
+fi
+
+# Fix source directory permissions
+fix-permissions /opt/app-root/
