@@ -12,4 +12,4 @@ The default version of Gradle will be used unless a [Gradle wrapper](https://doc
 
 # Versions
 
-- 3
+- jdk8

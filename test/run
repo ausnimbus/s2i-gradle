@@ -7,8 +7,8 @@
 # The image has to be available before this script is executed.
 #
 
-IMAGE_NAME=${IMAGE_NAME-ausnimbus/s2i-gradle:3.5}
-VERSION=${VERSION-"3.5"}
+IMAGE_NAME=${IMAGE_NAME-ausnimbus/s2i-gradle:jdk8}
+VERSION=${VERSION-"jdk8"}
 S2I_ARGS=${S2I_ARGS:-""}
 
 TEST_APPS=({gradlew-ratpack,gradlew-ratpack})
