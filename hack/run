@@ -5,7 +5,7 @@ DISPLAY_NAME="Gradle"
 FROM="gradle:%VERSION%"
 TYPE="s2i"
 VARIANTS="default"
-VERSIONS="jdk8"
+VERSIONS="jdk8,jdk9"
 
 DOCKER_PUSH=${DOCKER_PUSH:-"false"}
 

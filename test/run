@@ -13,7 +13,7 @@ S2I_ARGS=${S2I_ARGS:-""}
 
 TEST_APPS=({gradlew-ratpack,gradlew-ratpack})
 
-VERSION_COMMAND="gradle --version"
+VERSION_COMMAND="env"
 
 # TODO: ab keepalive doesn't seem to like ratpack
 export AB_PARAMS="-n 100 -c 32 -l"

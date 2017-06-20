@@ -3,15 +3,15 @@
 #
 # DO NOT EDIT IT DIRECTLY.
 #
-FROM gradle:jdk8
+FROM gradle:jdk9
 # <pre>
 
 MAINTAINER AusNimbus <support@ausnimbus.com.au>
 
-LABEL summary="Platform for running Gradle jdk8 applications" \
+LABEL summary="Platform for running Gradle jdk9 applications" \
       maintainer="AusNimbus <support@ausnimbus.com.au>" \
-      io.k8s.description="Platform for running Gradle jdk8 applications" \
-      io.k8s.display-name="Gradle jdk8"
+      io.k8s.description="Platform for running Gradle jdk9 applications" \
+      io.k8s.display-name="Gradle jdk9"
 
 ENV USER=999 \
     HOME=/opt/app-root/src
@@ -57,7 +57,7 @@ CMD /usr/bin/base-usage
 # </s2i>
 # <template>
 
-ENV JDK=jdk8
+ENV JDK=jdk9
 
 # </template>
 # <post>
