@@ -4,7 +4,7 @@ source /opt/app-root/etc/gradle_environment
 echo "---> Starting the application..."
 # Use the gradle wrapper if it exists
 if [ -f "gradlew" ]; then
-    ./gradle run
+    ./gradlew run
 else
     gradle run
 fi

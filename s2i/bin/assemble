@@ -31,7 +31,7 @@ echo "---> Building the application ..."
 # Use the gradle wrapper if it exists
 if [ -f "gradlew" ]; then
     ./gradlew --version
-    ./gradle $GRADLE_TASK
+    ./gradlew $GRADLE_TASK
 else
     gradle --version
     gradle $GRADLE_TASK
