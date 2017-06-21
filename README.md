@@ -4,7 +4,7 @@
 
 The [AusNimbus](https://www.ausnimbus.com.au/) builder for Gradle provides a fast, secure and reliable [Grails](https://www.ausnimbus.com.au/languages/grails-hosting/) and [Gradle hosting](https://www.ausnimbus.com.au/languages/java-hosting/) environment.
 
-The latest version of Gradle will be used unless a [Gradle wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html) is found. It is recommended to include the `gradlew` in your repository.
+The latest version of Gradle will be used unless a [Gradle wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html) is found. To use the Gradle wrapper you need to include the `gradlew` file in your repository.
 
 Web processes must bind to port `8080` and only the HTTP protocol is permitted for incoming connections.
 

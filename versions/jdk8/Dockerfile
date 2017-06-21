@@ -57,6 +57,7 @@ CMD /usr/bin/base-usage
 # </s2i>
 # <template>
 
+# For test purposes only
 ENV JDK=jdk8
 
 # </template>
