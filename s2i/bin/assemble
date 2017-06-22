@@ -13,13 +13,13 @@ if has_stage_task; then
   DEFAULT_GRADLE_BUILD_TASK="stage"
 elif is_spring_boot; then
   if is_webapp_runner; then
-    echo "---> Spring Boot and Webapp Runner detected"
+    echo -e "\t---> Spring Boot and Webapp Runner detected"
   else
-    echo "---> Spring Boot detected"
+    echo -e "\t---> Spring Boot detected"
   fi
   DEFAULT_GRADLE_BUILD_TASK="build -x test"
 elif is_ratpack; then
-  echo "---> Ratpack detected"
+  echo -e "\t---> Ratpack detected"
   DEFAULT_GRADLE_BUILD_TASK="installDist -x test"
 else
   DEFAULT_GRADLE_BUILD_TASK="stage"
@@ -30,6 +30,7 @@ export GRADLE_BUILD_TASK="${GRADLE_BUILD_TASK:-$DEFAULT_GRADLE_BUILD_TASK}"
 echo "---> Building the application ..."
 # Use the gradle wrapper if it exists
 if [ -f "gradlew" ]; then
+    echo -e "\t---> Gradle wrapper detected"
     ./gradlew --version
     ./gradlew $GRADLE_BUILD_TASK
 else
