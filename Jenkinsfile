@@ -157,9 +157,11 @@ node {
         def testAppHost = testAppService.object().spec.clusterIP;
         def testAppPort = testAppService.object().spec.ports[0].port;
 
-        sleep 60
-        echo "Testing endpoint ${testAppHost}:${testAppPort}"
-        sh "curl -o /dev/null $testAppHost:$testAppPort"
+        retry(2) {
+          sleep 60
+          echo "Testing endpoint ${testAppHost}:${testAppPort}"
+          sh "curl -o /dev/null $testAppHost:$testAppPort"  
+        }
 }
 
                                 }
