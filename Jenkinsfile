@@ -130,7 +130,7 @@ node {
         echo "Starting test application"
         echo "==============================="
 
-        def testApp = openshift.newApp("https://github.com/ausnimbus/gradle-ex", "--image-stream=s2i-gradle:${tag}", "-l app=gradle-ex");
+        def testApp = openshift.newApp("s2i-gradle:${tag}~https://github.com/ausnimbus/gradle-ex", "-l app=gradle-ex");
         echo "new-app created ${testApp.count()} objects named: ${testApp.names()}"
         testApp.describe()
 
