@@ -1,10 +1,16 @@
 #!/bin/bash -e
 source /opt/app-root/etc/gradle_environment
 
-echo "---> Starting the application..."
-# Use the gradle wrapper if it exists
-if [ -f "gradlew" ]; then
-    ./gradlew run
+# APP_RUN defined
+if [[ -n "$APP_RUN" ]]; then
+  echo "---> Running application from ($APP_RUN) ..."
+  eval bash -c "$APP_RUN"
 else
-    gradle run
+  echo "---> Starting the application..."
+  # Use the gradle wrapper if it exists
+  if [ -f "gradlew" ]; then
+      ./gradlew run
+  else
+      gradle run
+  fi
 fi
